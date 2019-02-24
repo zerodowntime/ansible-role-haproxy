@@ -1,0 +1,14 @@
+---
+# zerodowntime.haproxy/handlers/main.yml
+
+
+- name: restart haproxy
+  service:
+    name: "{{ haproxy__service_name }}"
+    state: restarted
+
+
+- name: reload haproxy
+  service:
+    name: "{{ haproxy__service_name }}"
+    state: reloaded

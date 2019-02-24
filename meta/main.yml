@@ -1,0 +1,19 @@
+---
+# zerodowntime.haproxy/meta/main.yml
+
+dependencies: []
+
+galaxy_info:
+  role_name: haproxy
+  description: Ansible role to install and configure haproxy
+
+  author: ZeroDowntime
+  company: ZeroDowntime Sp. z o.o.
+
+  license: Apache License 2.0
+
+  min_ansible_version: 2.5
+  platforms:
+    - name: EL
+      versions:
+        - 7

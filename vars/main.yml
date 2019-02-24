@@ -1,0 +1,29 @@
+---
+# zerodowntime.haproxy/vars/centos.yml
+
+# haproxy__config_path: string
+#  desc: config path
+haproxy__config_path: /etc/haproxy
+
+# haproxy__config_name: string
+#  desc: config file name
+haproxy__config_name: haproxy.cfg
+
+# haproxy__service_name: string
+#  desc: service name
+haproxy__service_name: haproxy
+
+
+# haproxy__user: string
+#  desc: system user
+haproxy__user: haproxy
+
+
+# haproxy__group: string
+#  desc: system group
+haproxy__group: haproxy
+
+
+# haproxy__chroot: string
+#  desc: path to chroot enviroment
+haproxy__chroot: /var/lib/haproxy
