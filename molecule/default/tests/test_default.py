@@ -5,9 +5,8 @@ testinfra_hosts = testinfra.utils.ansible_runner.AnsibleRunner(
     os.environ['MOLECULE_INVENTORY_FILE']).get_hosts('all')
 
 
-def test_yumcron_installed(host):
-    service = host.package("haproxy")
-    service.is_installed
+def test_haproxy_installed(host):
+    assert host.package("haproxy").is_installed
 
 
 def test_config_file(host):
