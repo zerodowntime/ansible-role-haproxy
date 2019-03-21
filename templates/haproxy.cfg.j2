@@ -264,6 +264,9 @@ backend {{ backend_name }}
    {% if backend.reqirep is defined and backend.reqirep %}
    {{ haproxy.options('reqirep', backend.reqirep) | indent(3) }}
    {% endif %}
+   {% if backend.http-response is defined and backend.http-response %}
+   {{ haproxy.options('http-response', backend.http-response) | indent(3) }}
+   {% endif %}
 
    {% if backend.balance is defined %}
    {{ haproxy.option('balance', backend.balance) | indent(3) }}

@@ -248,6 +248,8 @@ haproxy__frontend: {}
 #        - '^([^\ ]*\ /)executor[/]?(.*)  \1\2'
 #       reqirep:
 #        - '^([^\ ]*\ /)executor[/]?(.*)  \1\2'
+#        http-response:
+#          - replace-value Location (http|https)://([^/]*)\/(.*)$ \1://\2/executor/\3
 #      option:
 #        - 'httpchk HEAD / HTTP/1.0'
 #        - 'forwardfor'
