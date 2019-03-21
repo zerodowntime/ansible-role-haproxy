@@ -258,6 +258,12 @@ backend {{ backend_name }}
    {% if backend.option is defined %}
    {{ haproxy.options('option', backend.option) | indent(3) }}
    {% endif %}
+   {% if backend.reqrep is defined and backend.reqrep %}
+   {{ haproxy.options('reqrep', backend.reqrep) | indent(3) }}
+   {% endif %}
+   {% if backend.reqirep is defined and backend.reqirep %}
+   {{ haproxy.options('reqirep', backend.reqirep) | indent(3) }}
+   {% endif %}
 
    {% if backend.balance is defined %}
    {{ haproxy.option('balance', backend.balance) | indent(3) }}
