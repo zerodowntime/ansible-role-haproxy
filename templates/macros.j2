@@ -14,6 +14,16 @@
 {% endmacro %}
 
 
+{% macro acl(vars) %}
+{%- if vars is defined and vars -%}
+  {%- for acl_name, __option in vars.items() -%}
+acl {{ acl_name  }} {{ __option }}
+  {% endfor -%}
+{%- endif -%}
+{% endmacro %}
+
+
+
 {% macro servers(server) -%}
 server {{ server.name }} {{ server.address }}
 {%- if  server.param is defined %}
@@ -32,7 +42,7 @@ server {{ server.name }} {{ server.address }}
 
 
 {% macro server_templates(server) -%}
-server-template {{ server.name }} {{ server.range }} {{ server.fqdn }}{{ ':' + server.port|string if ((server.port is defined) and (server.port))  }} 
+server-template {{ server.name }} {{ server.range }} {{ server.fqdn }}{{ ':' + server.port|string if ((server.port is defined) and (server.port))  }}
 {%- if  server.param is defined %}
     {%- if server.param.weight is defined %} weight {{ server.param.weight | int }}{% endif %}
     {%- if server.param.minconn is defined %} minconn {{ server.param.minconn | int }}{% endif %}

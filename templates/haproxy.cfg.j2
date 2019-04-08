@@ -166,7 +166,7 @@ listen {{ listen_name }}
 
    {% endif %}
    {% if listen.acl is defined %}
-   {{ haproxy.options('acl', listen.acl) | indent(3) }}
+   {{ haproxy.acl(listen.acl) | indent(3) }}
 
    {% endif %}
    {% if listen.use_backend is defined %}
@@ -222,7 +222,7 @@ frontend {{ frontend_name }}
    {% endif %}
    {% if frontend.acl is defined %}
 
-   {{ haproxy.options('acl', frontend.acl) | indent(3) }}
+   {{ haproxy.acl(frontend.acl) | indent(3) }}
 
    {% endif %}
    {% if frontend.use_backend is defined %}
@@ -277,7 +277,7 @@ backend {{ backend_name }}
    {% endif %}
    {% if backend.acl is defined %}
 
-   {{ haproxy.options('acl', backend.acl) | indent(3) }}
+   {{ haproxy.acl(backend.acl) | indent(3) }}
    {% endif %}
    {#- MAILERS -#}
    {% if backend['email-alert'] is defined %}
