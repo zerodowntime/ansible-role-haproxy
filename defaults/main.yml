@@ -256,6 +256,7 @@ haproxy__frontend: {}
 #    backens_bar:
 #      redirect:
 #        - scheme https code 301 if !{ ssl_fc }
+#      server-template: srv 3 google.com:80 check
 #      servers:
 #      - name: vm-240
 #        address: 192.168.0.100:80
