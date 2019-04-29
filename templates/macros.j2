@@ -31,6 +31,7 @@ server {{ server.name }} {{ server.address }}
     {%- if server.param.minconn is defined %} minconn {{ server.param.minconn | int }}{% endif %}
     {%- if server.param.maxconn is defined %} maxconn {{ server.param.maxconn | int }}{% endif %}
     {%- if server.param.check is defined %} check
+        {%- if server.param.check.inter is defined %} inter {{ server.param.check.inter }}{% endif %}
         {%- if server.param.check.rise is defined %} rise {{ server.param.check.rise | int }}{% endif %}
         {%- if server.param.check.fall is defined %} rise {{ server.param.check.fall | int }}{% endif %}
     {%- endif %}
@@ -48,6 +49,7 @@ server-template {{ server.name }} {{ server.range }} {{ server.fqdn }}{{ ':' + s
     {%- if server.param.minconn is defined %} minconn {{ server.param.minconn | int }}{% endif %}
     {%- if server.param.maxconn is defined %} maxconn {{ server.param.maxconn | int }}{% endif %}
     {%- if server.param.check is defined %} check
+        {%- if server.param.check.inter is defined %} inter {{ server.param.check.inter }}{% endif %} 
         {%- if server.param.check.rise is defined %} rise {{ server.param.check.rise | int }}{% endif %}
         {%- if server.param.check.fall is defined %} rise {{ server.param.check.fall | int }}{% endif %}
     {%- endif %}
