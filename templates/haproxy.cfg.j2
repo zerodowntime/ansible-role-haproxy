@@ -214,6 +214,11 @@ frontend {{ frontend_name }}
    {% endfor %}
    {% endif %}
 
+   {%- if frontend['http-request'] is defined %}
+   {{ haproxy.options('http-request', frontend['http-request']) | indent(3) }}
+   {% endif %}
+
+
    {%- if frontend.rspidel is defined %}
    {{ haproxy.options('rspidel', frontend.rspidel) | indent(3) }}
    {% endif %}

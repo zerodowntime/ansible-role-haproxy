@@ -216,6 +216,8 @@ haproxy__listen: {}
 #   http-in:
 #     bind: [':80']
 #     mode: tcp
+#     'http-request':
+#       - deny if { path -i -m beg /api } !{ src 10.0.0.0/16 }
 #     reqadd:
 #     - 'X-Forwarded-Proto:\ https if { ssl_fc }'
 #     - 'HTTPS:\ on if { ssl_fc }'
