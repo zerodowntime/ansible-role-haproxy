@@ -21,6 +21,11 @@ haproxy__user_shell: "{{ haproxy__shell_nologin }}"
 haproxy__config_file: "{{ haproxy__config_path }}/{{ haproxy__config_name }}"
 
 
+# haproxy__config_extra_file: list or null
+# desc: paths to extra haproxy service configuration files, to override systemd
+haproxy__config_extra_file: []
+
+
 ############################ HAPROXY CONFIG ####################################
 
 # haproxy__ssl_default_ciphers: list

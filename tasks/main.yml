@@ -139,6 +139,79 @@
     - haproxy::configure
 
 
+- name: haproxy | check if haproxy__config_extra_file already exists
+  stat:
+    path: "{{ item }}"
+  register: haproxy___extraf_stats
+  when: (haproxy__config_extra_file is defined ) and (haproxy__config_extra_file)
+  loop: "{{ haproxy__config_extra_file }}"
+  tags:
+    - haproxy
+
+- name: haproxy | create extra configuration files for haproxy.service if they does not already exist
+  file:
+    path: "{{ item.item }}"
+    state: touch
+    owner: root
+    group: root
+    mode: 0640
+    seuser: system_u
+    serole: object_r
+    setype: etc_t
+  loop: "{{ haproxy___extraf_stats.results }}"
+  when:
+    - haproxy___extraf_stats is defined and haproxy___extraf_stats.results
+    - not item.stat.exists
+  tags:
+    - haproxy
+    - haproxy::configure
+
+
+- name: haproxy | create directory /etc/systemd/system/haproxy.service.d if does not already exists
+  become: true
+  file:
+    path: /etc/systemd/system/haproxy.service.d
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+    seuser: system_u
+    serole: object_r
+    setype: etc_t
+  when: (haproxy__config_extra_file is defined ) and (haproxy__config_extra_file)
+  tags:
+    - haproxy
+    - haproxy::service
+
+
+- name: haproxy | add extra config to haproxy.service unit
+  become: true
+  template:
+    src: config_extra_files.j2
+    dest: "{{ haproxy__override_service_file_path }}"
+    owner: root
+    group: root
+    mode: 0640
+    seuser: system_u
+    serole: object_r
+    setype: etc_t
+  register: haproxy_service
+  when: (haproxy__config_extra_file is defined ) and (haproxy__config_extra_file)
+  tags:
+    - haproxy
+    - haproxy::service
+
+
+- name: reload systemd
+  systemd:
+    daemon_reload: true
+  when: haproxy_service.changed
+  tags:
+    - haproxy
+    - haproxy::systemd
+    - skip_ansible_lint
+
+
 - name: haproxy | ensure that service is running
   become: true
   service:

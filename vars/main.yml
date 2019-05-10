@@ -27,3 +27,13 @@ haproxy__group: haproxy
 # haproxy__chroot: string
 #  desc: path to chroot enviroment
 haproxy__chroot: /var/lib/haproxy
+
+
+# haproxy__override_service_file_path: string
+#  desc: path to the file to override haproxy unit
+haproxy__override_service_file_path: /etc/systemd/system/haproxy.service.d/override.conf
+
+
+# haproxy__service_command_config: string
+#  desc: command to start haproxy with, used in unit template(templates)
+haproxy__service_command_config: /usr/sbin/haproxy -f $CONFIG
