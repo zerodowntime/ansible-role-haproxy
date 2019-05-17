@@ -31,7 +31,7 @@ acl {{ __definition }}
 
 
 {% macro servers(server) -%}
-server {{ server.name }} {{ server.address }}
+server {{ server.name }} {{ server.address }}{{ ':' + server.port|string if ((server.port is defined) and (server.port)) else '' }}
 {%- if  server.param is defined %}
     {%- if server.param.weight is defined %} weight {{ server.param.weight | int }}{% endif %}
     {%- if server.param.minconn is defined %} minconn {{ server.param.minconn | int }}{% endif %}
@@ -49,7 +49,7 @@ server {{ server.name }} {{ server.address }}
 
 
 {% macro server_templates(server) -%}
-server-template {{ server.name }} {{ server.range }} {{ server.fqdn }}{{ ':' + server.port|string if ((server.port is defined) and (server.port))  }}
+server-template {{ server.name }} {{ server.range }} {{ server.fqdn }}{{ ':' + server.port|string if ((server.port is defined) and (server.port)) else '' }}
 {%- if  server.param is defined %}
     {%- if server.param.weight is defined %} weight {{ server.param.weight | int }}{% endif %}
     {%- if server.param.minconn is defined %} minconn {{ server.param.minconn | int }}{% endif %}
