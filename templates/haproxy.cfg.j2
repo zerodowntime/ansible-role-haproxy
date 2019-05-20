@@ -241,6 +241,13 @@ frontend {{ frontend_name }}
    default_backend  {{ frontend.default_backend }}
    {% endif %}
 
+   {#- TIMEOUTS -#}
+   {% if frontend['timeouts'] is defined %}
+   {%   for timeout in frontend['timeouts'].items() %}
+   timeout {{timeout[0]}} {{timeout[1]}}
+   {%   endfor %}
+   {% endif %}
+
 
 {% endfor %}
 {% endif %}
@@ -298,6 +305,13 @@ backend {{ backend_name }}
    {% if backend['redirect'] is defined %}
    {{ haproxy.options('redirect', backend.redirect) | indent(3) }}
    {% endif %}
+   {#- TIMEOUTS -#}
+   {% if backend['timeouts'] is defined %}
+   {%   for timeout in backend['timeouts'].items() %}
+   timeout {{timeout[0]}} {{timeout[1]}}
+   {%   endfor %}
+   {% endif %}
+
    {#- SERVERS -#}
    {% if (backend.servers is defined) and (backend.servers) %}
 
