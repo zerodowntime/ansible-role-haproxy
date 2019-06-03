@@ -65,6 +65,10 @@ defaults
   timeout tunnel {{ haproxy__default_timeout_tunnel }}
   {% endif %}
 
+  {% if haproxy__default_default_server %}
+  default-server {{ haproxy__default_default_server }}
+  {% endif %}
+
   maxconn {{ haproxy__default_maxconn }}
   {% if haproxy__default_fullconn is defined and haproxy__default_fullconn %}
   fullconn {{ haproxy__default_fullconn }}
