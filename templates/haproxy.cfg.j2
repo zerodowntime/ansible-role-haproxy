@@ -209,6 +209,9 @@ frontend {{ frontend_name }}
    {% if (frontend['log-format'] is defined) and (frontend['log-format']) %}
    log-format "{{ frontend['log-format'] }}"
    {% endif %}
+   {% if (frontend['log-format-sd'] is defined) and (frontend['log-format-sd']) %}
+   log-format-sd "{{ frontend['log-format-sd'] }}"
+   {% endif %}
    {% if frontend['capture'] is defined %}
    {{ haproxy.options('capture', frontend.capture) | indent(3) }}
    {% endif %}
