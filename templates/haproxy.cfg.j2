@@ -134,12 +134,24 @@ listen {{ listen_name }}
    desctiption {{ listen.description }}
 
    {% endif %}
+   {% if listen.log is defined %}
+   log {{ listen.log }}
+   {% endif %}
    {% if listen.mode is defined %}
    mode {{ listen.mode }}
 
    {% endif %}
-   {{ haproxy.options('bind', listen.bind) | indent(3) }}
+   {% if listen.timeout is defined and listen.timeout%}
+   {% for _key, _value in listen.timeout.items() %}
+   timeout {{ _key }} {{ _value }}
+   {% endfor %}
 
+   {% endif %}
+   {{ haproxy.options('bind', listen.bind) | indent(3) }}
+   {%- if listen['tcp-request'] is defined %}
+   
+   {{ haproxy.options('tcp-request', listen['tcp-request']) | indent(3) }}
+   {% endif %}
    {% if listen.stats is defined %}
    stats enable
    {% if listen.stats.admin is defined %}
