@@ -314,6 +314,11 @@ backend {{ backend_name }}
    {{ haproxy.options('reqirep', backend.reqirep) | indent(3) }}
    {% endif %}
 
+   {%- if backend.errorfile is defined %}
+   {% for _errorcode, _errorfile in  backend.errorfile.items() %}
+   errorfile {{ _errorcode }} {{ _errorfile }}
+   {% endfor %}
+   {% endif %}
 
    {% if backend.balance is defined %}
    {{ haproxy.option('balance', backend.balance) | indent(3) }}
