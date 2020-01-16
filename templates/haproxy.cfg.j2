@@ -161,6 +161,9 @@ listen {{ listen_name }}
    {% if ((listen['stats']['hide-version'] is defined) and (listen['stats']['hide-version']|bool)) or (listen['stats']['hide-version'] is undefined) %}
    stats hide-version
    {% endif %}
+   {% if ((listen['stats']['show-legends'] is defined) and (listen['stats']['show-legends']|bool)) %}
+   stats show-legends
+   {% endif %}
    {% if listen.stats.scope is defined %}
    stats scope {{ listen.stats.scope|string }}
    {% endif %}
