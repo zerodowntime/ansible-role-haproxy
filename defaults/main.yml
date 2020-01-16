@@ -5,6 +5,9 @@
 # desc: install package name (required)
 haproxy__pacakge_name: haproxy
 
+# haproxy__package_version: string
+# desc: installed package version
+haproxy__package_version: !!null
 
 # haproxy__package_state: string [present|latest]
 # desc: installes package state (required)
