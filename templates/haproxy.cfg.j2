@@ -106,6 +106,7 @@ resolvers {{resolver_key}}
   {{ haproxy.option('hold timeout', resolver_data['hold_timeout']) | indent(3) }}
   {{ haproxy.option('hold valid', resolver_data['hold_valid']) | indent(3) }}
   {{ haproxy.option('hold obsolete', resolver_data['hold_obsolete']) | indent(3) }}
+  {{ haproxy.option('accepted_payload_size', resolver_data['accepted_payload_size']) | indent(3) }}
 {% endfor %}
 {% endif %}
 
