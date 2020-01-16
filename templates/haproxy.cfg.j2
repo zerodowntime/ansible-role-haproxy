@@ -97,6 +97,9 @@ resolvers {{resolver_key}}
   nameserver {{ _nameserver }} {{ resolver_data['nameserver'][_nameserver] }}
   {% endfor %}
   {% endif %}
+  {% if (resolver_data['parse-resolv-conf'] is defined) and (resolver_data['parse-resolv-conf']|bool) %}
+  parse-resolv-conf
+  {% endif %}
   {{ haproxy.option('resolve_retries', resolver_data['resolve_retries']) | indent(3) }}
   {{ haproxy.option('timeout resolve', resolver_data['timeout_resolve']) | indent(3) }}
   {{ haproxy.option('timeout retry', resolver_data['timeout_retry']) | indent(3) }}
