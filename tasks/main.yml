@@ -41,7 +41,7 @@
       yum: '-'
     haproxy___version: "{{ (ver_pref[ansible_pkg_mgr] + haproxy__package_version) if haproxy__package_version else '' }}"
   package:
-    name: "{{ haproxy__pacakge_name }}{{ haproxy___version }}"
+    name: "{{ haproxy__package_name }}{{ haproxy___version }}"
     state: "{{ haproxy__package_state }}"
   tags:
     - haproxy

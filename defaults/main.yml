@@ -1,9 +1,9 @@
 ---
 # zerodowntime.haproxy/handlers/main.yml
 
-# haproxy__pacakge_name: string
+# haproxy__package_name: string
 # desc: install package name (required)
-haproxy__pacakge_name: haproxy
+haproxy__package_name: haproxy
 
 # haproxy__package_version: string
 # desc: installed package version
