@@ -19,8 +19,8 @@ Supported platforms:
 
 | Variable name                            | Required? |  Type  | Description                                                                                                |
 |:---------------------------------------- |:---------:|:------:|:---------------------------------------------------------------------------------------------------------- |
-| haproxy__pacakge_name                    |    yes    | string | installed package name                                                                                     |
-| haproxy__package_state                   |    yes    | string | Package state (present or latest). Default: 'present'                                                      |
+| haproxy__package_name                    |    yes    | string | installed package name                                                                                     |
+| haproxy__package_state                   |    yes    | string | package state (present or latest). Default: 'present'                                                      |
 | haproxy__user_shell                      |    yes    | string | haproxy user login shell                                                                                   |
 | haproxy__config_file                     |    no     | string | path to haproxy config file, if null ansible don\`t generate this config                                   |
 | haproxy__config_extra_file               |   no      |  list|  paths to extra haproxy service configuration files, to override haproxy unit
