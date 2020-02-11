@@ -45,6 +45,7 @@ server {{ server.name }} {{ server.address }}{{ ':' + server.port|string if ((se
     {%- if server.param.ssl is defined %} ssl
         {%- if server.param.ssl is not none %} {{ server.param.ssl }}{% endif %}
     {%- endif %}
+    {%- if server.param.backup is defined and server.param.backup %} backup {% endif %}
 {% endif %}
 {% endmacro %}
 
