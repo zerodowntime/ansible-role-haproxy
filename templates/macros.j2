@@ -61,6 +61,7 @@ server-template {{ server.name }} {{ server.range }} {{ server.fqdn }}{{ ':' + s
         {%- if server.param.check.inter is defined %} inter {{ server.param.check.inter }}{% endif %}
         {%- if server.param.check.rise is defined %} rise {{ server.param.check.rise | int }}{% endif %}
         {%- if server.param.check.fall is defined %} fall {{ server.param.check.fall | int }}{% endif %}
+        {%- if server.param.check.port is defined %} port {{ server.param.check.port | int }}{% endif %}
     {%- endif %}
     {%- if server.param.ssl is defined %} ssl
         {%- if server.param.ssl is not none %} {{ server.param.ssl }}{% endif %}
