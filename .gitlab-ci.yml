@@ -1,34 +1,32 @@
 ---
+# https://git.zdt.io/misc/gitlab_templates
 include:
-  - project: 'misc/gitlab_templates'
+  - project: "misc/gitlab_templates"
     ref: master
-    file: '/molecule/.base-template.yml'
-  - project: 'misc/gitlab_templates'
+    file: "/molecule/.base-template.yml"
+  - project: "misc/gitlab_templates"
     ref: master
-    file: '/.clone-before-script-template.yml'
+    file: "/.clone-before-script-template.yml"
 
 stages:
-  - ansible2_7_8
-  - ansible2_7
-  - ansible2_5
+  - ansible-2.9.docker
+  - ansible-2.9.vm
 
-ansible2_7_8:
-  stage: ansible2_7_8
-  extends: .molecule.default
-  image: zerodowntime/gitlab_runner_executor_molecule:ansible-2.7.8
-  script:
-    - molecule test -s libvirt
+# images link
+# https://cloud.docker.com/u/zerodowntime/repository/docker/zerodowntime/gitlab_runner_executor_molecule
 
-ansible2_7:
-  stage: ansible2_7
+# job docker
+ansible-2.9.docker:
   extends: .molecule.default
-  image: zerodowntime/gitlab_runner_executor_molecule:ansible-2.7.0
+  stage: ansible-2.9.docker
+  image: zerodowntime/gitlab_runner_executor_molecule:ansible-2.9-molecule-3.0
   script:
-    - molecule test -s libvirt
+    - molecule test -s docker
 
-ansible2_5:
-  stage: ansible2_5
+# job vm
+ansible-2.9.vm:
   extends: .molecule.default
-  image: zerodowntime/gitlab_runner_executor_molecule:ansible-2.5.15
+  stage: ansible-2.9.vm
+  image: zerodowntime/gitlab_runner_executor_molecule:ansible-2.9-molecule-3.0
   script:
-    - molecule test -s libvirt
+    - molecule test
